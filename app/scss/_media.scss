@@ -1,0 +1,31 @@
+@media (max-width: 1060px){
+  .features {
+    &__content {
+      flex-direction: column;
+      align-items: center;
+    }
+    &__content-items {
+      padding-top: 75px;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+    &__content-left {
+      position: relative;
+      flex-shrink: 0;
+    }
+    &__content-text {
+      font-weight: 400;
+      max-width: 250px;
+    }
+    &__img-graph {
+      position: absolute;
+      right: -30px;
+      bottom: -90px;
+    }
+    &__inner {
+      padding: 162px 100px 0px;
+      margin-bottom: 312px;
+    }
+  }
+}
