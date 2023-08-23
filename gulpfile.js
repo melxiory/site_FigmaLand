@@ -19,11 +19,11 @@ function pages() {
     includePaths: 'app/components'
   }))
   .pipe(dest('app'))
-  .pipe(browserSync.stream());
+  .pipe(browserSync.stream())
 }
 
 function buildStyles() {
-  return src('./app/scss/style.scss')
+  return src('app/scss/style.scss')
     .pipe(concat('style.min.css'))
     .pipe(scss({outputStyle: 'compressed'}))
     .pipe(autoprefixer({
@@ -31,17 +31,17 @@ function buildStyles() {
       grid: true
     }))
     .pipe(dest('app/css'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
 };
 
 function scripts() {
   return src([
-    "./app/js/main.js"
+    "app/js/main.js"
   ])
   .pipe(concat("main.min.js"))
   .pipe(uglify())
   .pipe(dest("app/js"))
-  .pipe(browserSync.stream());
+  .pipe(browserSync.stream())
 };
 
 function images(){
@@ -53,7 +53,6 @@ function images(){
   .pipe(src('app/images/src/**/*.*'))
   .pipe(newer('app/images'))
   .pipe(webp())
-
   .pipe(dest('app/images'))
 }
 
@@ -84,11 +83,13 @@ function fonts(){
 function watching() {
   browserSync.init({
     server: {
-        baseDir: "./"
-    }
+        baseDir: "app/"
+    },
+    ui: {
+      port: 5500}
   });
   watch(['app/components/*', 'app/pages/*'], pages)
-  watch(['app/scss/style.scss'], buildStyles)
+  watch(['app/scss/*.scss'], buildStyles)
   watch(['app/js/main.js'], scripts)
   watch(['app/images/src'], images)
   watch(['app/fonts/src'], fonts)
